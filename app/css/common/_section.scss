@@ -1,0 +1,12 @@
+.section {
+    display: grid;
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    min-height: 100%;
+}
+
+.section.hidden {
+    display: none;
+    opacity: 0;
+}

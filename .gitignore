@@ -1,0 +1,38 @@
+# Numerous always-ignore extensions
+*.diff
+*.err
+*.orig
+*.log
+*.rej
+*.swo
+*.swp
+*.vi
+*~
+*.sass-cache
+
+# OS or Editor folders
+.DS_Store
+.cache
+.parcel-cache
+.project
+.settings
+.tmproj
+nbproject
+Thumbs.db
+
+# NPM packages folder.
+node_modules/
+
+# Temporary files.
+tmp/
+
+# Parcel output folder.
+build/
+dist/
+builds/
+
+# Bower stuff.
+bower_components/
+*.zip
+*.msi
+*.apk
