@@ -6,9 +6,14 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "preinstall": "yarn config-hooks",
-    "config-hooks": "yarn config-boilerplate-hooks",
-    "config-boilerplate-hooks": "git config core.hooksPath git_hooks",
+    "preinstall": "yarn setup-git && yarn setup-submodules && yarn update-submodules && yarn config-hooks",
+    "postinstall": "yarn setup-submodules && yarn update-submodules",
+    "setup-git": "git init",
+    "setup-submodules": "yarn setup-core-submodule",
+    "setup-core-submodule": "node tasks/setup_submodule.mjs glb-viewer-core",
+    "update-submodules": "yarn update-core",
+    "update-core": "node tasks/update_submodule.mjs glb-viewer-core",
+    "config-hooks": "git config core.hooksPath git_hooks",
     "start": "node tasks/remove_cache.mjs && node tasks/start_app.mjs false",
     "start-ssl": "node tasks/remove_cache.mjs && node tasks/start_app.mjs true",
     "start-vite": "vite --port 1234",
@@ -19,7 +24,7 @@
     "dist": "yarn build && yarn zip",
     "zip": "node tasks/zip_app.mjs",
     "copy-public": "node tasks/copy_folder.mjs public dist",
-    "fix-syntax": "standardx --fix || echo 'Done'"
+    "fix-syntax": "standardx --fix"
   },
   "dependencies": {
 
@@ -43,7 +48,8 @@
       "/core/",
       "/public/",
       "/pit/",
-      "vite.config.mjs"
+      "vite.config.mjs",
+      "glb-viewer-core/public/lib/*"
     ]
   }
 }
