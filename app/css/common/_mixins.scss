@@ -1,3 +1,10 @@
+
+@mixin orientation($orientation) {
+    @media (orientation: $orientation), print {
+        @content;
+    }
+}
+
 @mixin respond-to($breakpoint) {
     @media screen and (min-width: $breakpoint), print {
         @content;
@@ -25,5 +32,36 @@
 @mixin user-drag($value) {
     @each $vendor in ('-webkit-', '-moz-', '-ms-', '-o-', '') {
         #{$vendor}user-drag: #{$value};
+    }
+}
+
+@mixin backdrop-filter($value) {
+    @each $vendor in ('-webkit-', '-moz-', '-ms-', '-o-', '') {
+        #{$vendor}backdrop-filter: #{$value};
+    }
+}
+
+@mixin mask($value) {
+    @each $vendor in ('-webkit-', '') {
+        #{$vendor}mask: #{$value};
+    }
+}
+
+@mixin mask-composite($value) {
+    @each $vendor in ('-webkit-', '') {
+        #{$vendor}mask-composite: #{$value};
+    }
+}
+
+@mixin mask-image($value) {
+    @each $vendor in ('-webkit-', '') {
+        #{$vendor}mask-image: #{$value};
+    }
+}
+
+@mixin hide-scrollbar($value) {
+    &::-webkit-scrollbar { display: none; }
+    @each $vendor in ('-webkit-scrollbar', '-ms-overflow-style', 'scrollbar-width') {
+        #{$vendor}: none;
     }
 }

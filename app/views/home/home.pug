@@ -1,6 +1,6 @@
 .section.home.hidden
     .home__iframe.disabled
-        iframe(src="/webview/index.html" frameborder="0" allowfullscreen) 
+        iframe(src="#" frameborder="0" allowfullscreen) 
     .home__modal.hidden
         .home__modal-content
             h2 Home Section
@@ -8,3 +8,5 @@
             input(type='file' id='fileInput' accept='.glb,.gltf' onchange='app.home_view.on_file_change(event)')
 
         .home__modal-loading.hidden Loading...
+
+    .home__blur

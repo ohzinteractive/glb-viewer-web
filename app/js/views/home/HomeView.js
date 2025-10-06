@@ -18,14 +18,39 @@ export class HomeView
     this.modal_content = this.container.querySelector('.home__modal-content');
     this.modal_loading = this.container.querySelector('.home__modal-loading');
 
-    window.addEventListener('message', (event) =>
-    {
-      console.log('Message received:', event.data);
+    this.blur = this.container.querySelector('.home__blur');
 
-      if (event.data.type === 'ready')
-      {
-        this.modal.classList.remove('hidden');
-      }
+    // Load app
+    this.iframe.src = '/webview/index.html';
+  }
+
+  on_iframe_ready()
+  {
+    // TODO: Add ability to modify these settings from web
+    const config = {
+      prettifyPropertyLabels: true,
+      relevant3dObjectKeys: [
+        'name',
+        'type',
+        'position',
+        'rotation',
+        'scale',
+        'globalScale',
+        'userData'
+      ]
+    };
+
+    this.modal.classList.remove('hidden');
+
+    // console.log('WebView is ready');
+    this.iframe.contentWindow.postMessage({
+      type: 'updateConfig',
+      config: config
+    });
+
+    this.iframe.contentWindow.postMessage({
+      type: 'setWebViewPath',
+      webview_path: '/'
     });
   }
 
@@ -63,11 +88,13 @@ export class HomeView
         // Send the base64 string to the WebView
         this.iframe.contentWindow.postMessage({
           type: 'loadModelFromBase64',
-          data: base64String
+          data: base64String,
+          extension: file.name.split('.').pop().toLowerCase()
         }, '*');
 
         this.modal.classList.add('hidden');
         this.iframe_container.classList.remove('disabled');
+        this.blur.classList.add('hidden');
       };
       reader.readAsArrayBuffer(file);
     }
