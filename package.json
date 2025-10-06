@@ -15,6 +15,7 @@
     "update-core": "node tasks/update_submodule.mjs glb-viewer-core",
     "config-hooks": "git config core.hooksPath git_hooks",
     "start": "node tasks/remove_cache.mjs && node tasks/start_app.mjs false",
+    "start-core": "cd glb-viewer-core && yarn start && cd ..",
     "start-ssl": "node tasks/remove_cache.mjs && node tasks/start_app.mjs true",
     "start-vite": "vite --port 1234",
     "start-vite-ssl": "VITE_USE_HTTPS=true vite --port 443",

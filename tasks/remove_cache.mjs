@@ -8,6 +8,7 @@ class RemoveCache
     {
       // Remove cache and dist folders to prevent chaching issues
       fs.rmSync('dist', { recursive: true, force: true });
+      fs.rmSync('public/webview', { recursive: true, force: true });
     }
     catch (e)
     {

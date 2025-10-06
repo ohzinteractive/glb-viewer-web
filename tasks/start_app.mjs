@@ -1,25 +1,104 @@
-import { exec, execSync } from 'child_process';
+import { spawn } from 'child_process';
 
 class StartApp
 {
-  async start(use_ssl, env_variables_string)
+  constructor()
+  {
+    this.core_process = null;
+    this.app_process = null;
+  }
+
+  async start(env_variables_string)
   {
     try
     {
       const env_variables = this.get_env_variables(env_variables_string);
-      const vite_command = use_ssl ? 'yarn start-vite-ssl' : 'yarn start-vite';
 
       Object.assign(env_variables, process.env);
 
-      // start core
-      exec('cd glb-viewer-core && yarn start && cd ..', { env: env_variables, stdio: 'inherit' });
+      this.run_core_process(env_variables);
 
-      execSync(`${vite_command}`, { env: env_variables, stdio: 'inherit' });
+      // Handle termination
+      const terminate = () =>
+      {
+        console.log('\nStopping processes...');
+
+        if (this.core_process)
+        {
+          this.core_process.kill('SIGINT');
+        }
+        if (this.app_process)
+        {
+          this.app_process.kill('SIGINT');
+        }
+
+        // Exit after a short delay to allow cleanup
+        setTimeout(() => process.exit(), 1000);
+      };
+
+      process.on('SIGINT', terminate);
+      process.on('SIGTERM', terminate);
     }
     catch (e)
     {
       console.error('Error:', e);
     }
+  }
+
+  run_app_process(env_variables)
+  {
+    console.log('run_app_process, Starting app process...');
+
+    this.app_process = spawn('yarn', ['start-vite'], { env: env_variables, shell: true }); //, { stdio: 'pipe' }
+
+    this.app_process.stdout.on('data', (data) =>
+    {
+      const data_str = '' + data;
+      // console.log('Stdout2: ' + data);
+      console.log(data_str);
+
+      if (data_str.includes('http://localhost'))
+      {
+        console.log('App process started');
+      }
+    });
+
+    // this.app_process.stderr.on('data', (data) =>
+    // {
+    //   const data_str = '' + data;
+
+    //   console.log('stderr', data_str);
+    // });
+  }
+
+  run_core_process(env_variables)
+  {
+    console.log('run_core_process, Starting core process...');
+
+    this.core_process = spawn('yarn', ['start-core'], { shell: true, env: env_variables });
+
+    this.core_process.stdout.on('data', (data) =>
+    {
+      const data_str = '' + data;
+      console.log('Stdout1: ' + data);
+
+      if (data_str.includes('http://localhost'))
+      {
+        console.log('Core process started');
+
+        if (!this.app_process)
+        {
+          this.run_app_process(env_variables);
+        }
+      }
+    });
+
+    this.core_process.stderr.on('data', (data) =>
+    {
+      const data_str = '' + data;
+
+      console.log(data_str);
+    });
   }
 
   get_env_variables(env_variables_string)

@@ -21,7 +21,7 @@ export class HomeView
     this.blur = this.container.querySelector('.home__blur');
 
     // Load app
-    this.iframe.src = '/webview/index.html';
+    this.iframe.src = import.meta.env.DEV ? 'http://localhost:1235/webview/' : '/webview/index.html';
   }
 
   on_iframe_ready()
