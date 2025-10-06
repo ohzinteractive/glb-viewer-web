@@ -19,7 +19,7 @@
     "start-vite": "vite --port 1234",
     "start-vite-ssl": "VITE_USE_HTTPS=true vite --port 443",
     "build-api": "vite build ./app/js/Api.js --no-cache",
-    "build": "node tasks/remove_cache.mjs && node tasks/build_app.mjs && yarn copy-public && yarn build-core",
+    "build": "node tasks/remove_cache.mjs && yarn build-core && node tasks/build_app.mjs && yarn copy-public",
     "build-vite": "vite build",
     "build-core": "cd glb-viewer-core && yarn build && cd ..",
     "dist": "yarn build && yarn zip",
