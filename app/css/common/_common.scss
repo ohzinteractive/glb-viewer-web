@@ -1,15 +1,21 @@
 // Small Devices Portrait
-$small-breakpoint:      370px;
+$small-breakpoint: 370px;
+
 // Small Devices Landscale
 $small-wide-breakpoint: 568px;
+
 // Big Devices Portrait
-$medium-breakpoint:     820px;
+$medium-breakpoint: 820px;
+
 // Big Devices Landscape
-$wide-breakpoint:       960px;
+$wide-breakpoint: 960px;
+
 // Desktop Devices
 $ultra-wide-breakpoint: 1366px;
+
 // Desktop Devices wide screens
 $super-ultra-wide-breakpoint: 1920px;
+
 // Desktop Devices ultra wide screens
 $mega-ultra-wide-breakpoint: 2560px;
 
@@ -21,11 +27,11 @@ $ptr: 0.0625rem;
 }
 
 html {
+    font-size: 16px;
+
+    text-size-adjust: 100%;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    -webkit-text-size-adjust: 100%;
-
-    font-size: 16px;
 
     @include respond-to($super-ultra-wide-breakpoint) {
         font-size: 20px;
@@ -39,6 +45,7 @@ html {
 html,
 body {
     margin: 0;
+
     width: 100%;
     height: 100vh;
 
@@ -47,18 +54,24 @@ body {
 
 body {
     display: flex;
+
+    flex-direction: column;
+
     // position: fixed;
     margin: 0;
+
     color: $primary-color;
-    background-color: $background-color;
+
     // font-family: $montserrat-font;
-    font-family: 'Arial';
-    flex-direction: column;
+    font-family: Arial;
+
+    background-color: $background-color;
     overflow: hidden;
 }
 
 a {
     color: $primary-color;
+
     text-decoration: none;
 }
 
@@ -72,6 +85,10 @@ h1.seo__title, h2.seo__subtitle {
 
 div.hidden {
     display: none;
+    pointer-events: none;
+}
+
+div.disabled {
     pointer-events: none;
 }
 
@@ -108,10 +125,10 @@ input:focus, textarea:focus, select:focus {
     color: $placeholder-color;
 }
 
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
+:input-placeholder { /* Internet Explorer 10-11 */
     color: $placeholder-color;
 }
 
-::-ms-input-placeholder { /* Microsoft Edge */
+::input-placeholder { /* Microsoft Edge */
     color: $placeholder-color;
 }

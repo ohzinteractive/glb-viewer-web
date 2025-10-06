@@ -30,6 +30,7 @@ tmp/
 build/
 dist/
 builds/
+public/webview
 
 # Bower stuff.
 bower_components/

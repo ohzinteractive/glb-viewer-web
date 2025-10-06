@@ -1,4 +1,4 @@
-import { execSync } from 'child_process';
+import { exec, execSync } from 'child_process';
 
 class StartApp
 {
@@ -10,6 +10,9 @@ class StartApp
       const vite_command = use_ssl ? 'yarn start-vite-ssl' : 'yarn start-vite';
 
       Object.assign(env_variables, process.env);
+
+      // start core
+      exec('cd glb-viewer-core && yarn start && cd ..', { env: env_variables, stdio: 'inherit' });
 
       execSync(`${vite_command}`, { env: env_variables, stdio: 'inherit' });
     }
