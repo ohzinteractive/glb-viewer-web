@@ -35,7 +35,6 @@
     "archiver": "^6.0.1",
     "pit-js": "^4.1.1",
     "pug": "^3.0.3",
-    "replace-in-file": "^6.2.0",
     "sass": "1.77.5",
     "standardx": "^7.0.0",
     "stylelint": "^15.3.0",
