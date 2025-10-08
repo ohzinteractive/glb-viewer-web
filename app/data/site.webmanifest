@@ -1,6 +1,6 @@
 {
-    "name": "OHZI Interactive Studio",
-    "short_name": "OHZI",
+    "name": "GLTF/GLB Viewer",
+    "short_name": "GLTF/GLB Viewer",
     "icons": [
         {
             "src": "images/common/icon_192.png",

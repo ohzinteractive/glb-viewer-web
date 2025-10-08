@@ -1,7 +1,7 @@
 [
   {
-    "title": "OHZI Interactive / Dive into digital magic.",
-    "description": "We are a passionate, tightly knit team of designers and developers dedicated to building spectacular, one-of-a-kind interactive experiences.",
+    "title": "GLTF/GLB Viewer",
+    "description": "View and inspect your GLTF/GLB files.",
     "url": "/",
     "canonical": true
   }
