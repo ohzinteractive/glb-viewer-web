@@ -1,4 +1,4 @@
-# OHZI Framework mini
+# OHZI GLB Viewer Web
 
 ## Prerequisites
 
@@ -8,29 +8,21 @@ Before you begin, ensure you have met the following requirements:
     2. Git: `2.x.x`
     3. Yarn: `1.22.x`
 
-## Installing Framework mini
+## Building GLB Viewer Web
 
-To install Framework mini, follow these steps:
-
-1. Clone the repository.
-2. Navigate to the project directory.
-3. Install the dependencies: `yarn install`
-
-## Using Framework mini
-
-To use Framework mini, follow these steps:
-
-1. Start the application: `yarn start`
-1. Navigate to: [http://localhost:1234](http://localhost:1234)
-
-## Building Framework mini
-
-To build Framework mini, follow these steps:
+To build GLB Viewer Web, follow these steps:
 
 1. Build the application: `yarn build`
 2. You'll find the built project on `dist` folder.
+3. You can test the build going to the dist folder with `http-server -c-1`
 
-The resulting build is a standalone web app with static HTML, CSS, Javascript, and Assets files.
+## Committing and Pushing changes
+
+When making changes in the GLB Core Submodule, you can use the VS Code extension to choose to commit changes to the web app or the core submodule.
+The order is:
+ 1st Commit and push changes to the core submodule (make sure to sync before)
+ 2nd Commit and push changes to the web app with the core submodule hash changed
+
 
 ## Contact
 
