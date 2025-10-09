@@ -1,5 +1,39 @@
 # OHZI GLB Viewer Web
 
+This is the web app for the OHZI GLB Viewer.
+
+Explore, look, and inspect your GLB models with detailed material, texture, geometry, and animation analysis.
+
+![OHZI GLB Viewer Web](https://github.com/ohzinteractive/glb-viewer-web/blob/main/public/images/previews/preview-13.0.0.jpg?raw=true)
+
+## Features
+
+### 🎨 Material Inspection
+- View and inspect all materials in your GLB model
+- Detailed material properties and parameters
+
+### 🖼️ Texture Viewer
+- Preview all textures embedded in your model
+- Support for compressed textures (Basis Universal, Draco)
+- Texture details and metadata
+
+### 📐 Geometry Analysis
+- Inspect mesh geometries and their attributes
+- View vertex counts, indices, and buffer information
+- Geometry hierarchy visualization
+
+### 🎬 Animation Controls
+- Play, pause, and scrub through animations
+- Support for multiple animation tracks
+
+### 🌳 Scene Hierarchy
+- Interactive scene tree view
+- Search scene nodes
+- Node selection and inspection
+
+### ⚙️ Advanced Settings
+- Skeleton visualization for rigged models
+
 ## Prerequisites
 
 Before you begin, ensure you have met the following requirements:
