@@ -123,6 +123,16 @@
         box-shadow: 0 4px 8px rgb(0 0 0 / 10%);
     }
 
+    .home__modal-loading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+
+        transform: translate(-50%, -50%);
+
+        z-index: 10;
+    }
+
     .home__modal-content {
         display: flex;
 
