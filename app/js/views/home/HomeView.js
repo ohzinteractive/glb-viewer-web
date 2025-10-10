@@ -18,6 +18,8 @@ export class HomeView
     this.modal_content = this.container.querySelector('.home__modal-content');
     this.modal_loading = this.container.querySelector('.home__modal-loading');
 
+    this.change_model_button = this.container.querySelector('.home__change-model-button');
+
     this.input = this.container.querySelector('.home__modal-input');
 
     this.blur = this.container.querySelector('.home__blur');
@@ -34,18 +36,19 @@ export class HomeView
     document.body.addEventListener('dragend', this.on_drop_reset.bind(this));
     document.body.addEventListener('drop', this.on_drop_drop.bind(this));
 
+    const model_url = import.meta.env.DEV ? 'http://localhost:1234/models/' : '/models/';
     this.examples = {
       chick: {
         name: 'Chick',
-        url: '/models/chick.glb'
+        url: model_url + 'chick.glb'
       },
       cubohzi: {
         name: 'Cubozi',
-        url: '/models/cubohzi.glb'
+        url: model_url + 'cubohzi.glb'
       },
       toy_car: {
         name: 'Toy Car',
-        url: '/models/toy_car.glb'
+        url: model_url + 'toy_car.glb'
       }
     };
   }
@@ -126,6 +129,7 @@ export class HomeView
         this.modal.classList.add('hidden');
         this.iframe_container.classList.remove('disabled');
         this.blur.classList.add('hidden');
+        this.change_model_button.classList.remove('hidden');
       };
       reader.readAsArrayBuffer(file);
     }
@@ -181,8 +185,38 @@ export class HomeView
     this.drop_area.classList.remove('visible');
   }
 
-  on_example_click(index)
+  async on_example_click(index)
   {
-    console.log('example', index);
+    this.modal_loading.classList.remove('hidden');
+
+    const response = await fetch(this.examples[index].url);
+    const arrayBuffer = await response.arrayBuffer();
+
+    // Convert to base64
+    const base64String = btoa(
+      new Uint8Array(arrayBuffer)
+        .reduce((data, byte) => data + String.fromCharCode(byte), '')
+    );
+
+    this.iframe.contentWindow.postMessage({
+      type: 'loadModelFromBase64',
+      data: base64String,
+      extension: 'glb'
+    }, '*');
+
+    this.modal.classList.add('hidden');
+    this.iframe_container.classList.remove('disabled');
+    this.blur.classList.add('hidden');
+    this.change_model_button.classList.remove('hidden');
+  }
+
+  on_change_model_click()
+  {
+    this.modal.classList.remove('hidden');
+    this.iframe_container.classList.add('disabled');
+    this.blur.classList.remove('hidden');
+    this.input.value = '';
+    this.modal_loading.classList.add('hidden');
+    this.change_model_button.classList.add('hidden');
   }
 }

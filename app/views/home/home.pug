@@ -1,5 +1,5 @@
 .section.home.hidden
-    .button.home__change-model-button.hidden
+    .button.home__change-model-button.hidden(onclick='app.home_view.on_change_model_click()')
         svg.home__change-model-button-icon(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-arrow-left-icon lucide-square-arrow-left")
             rect(width="18" height="18" x="3" y="3" rx="2")
             path(d="m12 8-4 4 4 4")
@@ -18,7 +18,7 @@
                     p.home__subtitle View and inspect your GLTF/GLB files.
                 .home__top-trigger
                     .button.home__modal-input-trigger(onclick='app.home_view.trigger_file_input()')
-                        .home__modal-input-trigger-text Choose or drop a file
+                        .home__modal-input-trigger-text Drop or Choose
             .home__content-bottom
                     .home__modal-bottom-title
                         | Or try one of these:
