@@ -1,11 +1,41 @@
 .section.home.hidden
+    .button.home__change-model-button.hidden
+        svg.home__change-model-button-icon(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-arrow-left-icon lucide-square-arrow-left")
+            rect(width="18" height="18" x="3" y="3" rx="2")
+            path(d="m12 8-4 4 4 4")
+            path(d="M16 12H8")
     .home__iframe.disabled
-        iframe(src="#" frameborder="0" allowfullscreen) 
+        iframe(src="#" frameborder="0" allowfullscreen)
     .home__modal.hidden
+        input.home__modal-input.hidden(type='file' id='fileInput'  onchange='app.home_view.on_file_change(event)')
         .home__modal-content
-            h2 GLTF/GLB Viewer
-            p View and inspect your GLTF/GLB files.
-            input(type='file' id='fileInput' accept='.glb,.gltf' onchange='app.home_view.on_file_change(event)')
+            .home__content-top
+                .home__modal-header
+                    .home__title-group
+                        .home__icon
+                            img(src='images/common/icon_512.png' alt='GLTF/GLB Viewer Icon')
+                        h1.home__title GLTF/GLB Viewer
+                    p.home__subtitle View and inspect your GLTF/GLB files.
+                .home__top-trigger
+                    .button.home__modal-input-trigger(onclick='app.home_view.trigger_file_input()')
+                        .home__modal-input-trigger-text Choose or drop a file
+            .home__content-bottom
+                    .home__modal-bottom-title
+                        | Or try one of these:
+                    .home__modal-examples
+                        .button.home__modal-example(onclick='app.home_view.on_example_click("chick")')
+                            img.home__modal-example-img(src='images/examples/chick.png' alt='GLTF/GLB Viewer Icon')
+                            .home__modal-example-title
+                                | Chick
+                        .button.home__modal-example(onclick='app.home_view.on_example_click("cubohzi")')
+                            img.home__modal-example-img(src='images/examples/cubohzi.png' alt='GLTF/GLB Viewer Icon')
+                            .home__modal-example-title
+                                | Cubohzi
+                        .button.home__modal-example(onclick='app.home_view.on_example_click("toy_car")')
+                            img.home__modal-example-img(src='images/examples/toy_car.png' alt='GLTF/GLB Viewer Icon')
+                            .home__modal-example-title
+                                | Toy Car
+            .home__drop-area
 
         .home__modal-loading.hidden Loading...
 

@@ -18,10 +18,36 @@ export class HomeView
     this.modal_content = this.container.querySelector('.home__modal-content');
     this.modal_loading = this.container.querySelector('.home__modal-loading');
 
+    this.input = this.container.querySelector('.home__modal-input');
+
     this.blur = this.container.querySelector('.home__blur');
 
     // Load app
     this.iframe.src = import.meta.env.DEV ? 'http://localhost:1235/webview/' : '/webview/index.html';
+
+    this.drop_area = this.container.querySelector('.home__drop-area');
+    this._dragEnterCount = 0;
+
+    document.body.addEventListener('dragenter', this.on_drop_dragenter.bind(this));
+    document.body.addEventListener('dragover', this.on_drop_dragover.bind(this));
+    document.body.addEventListener('dragleave', this.on_drop_dragleave.bind(this));
+    document.body.addEventListener('dragend', this.on_drop_reset.bind(this));
+    document.body.addEventListener('drop', this.on_drop_drop.bind(this));
+
+    this.examples = {
+      chick: {
+        name: 'Chick',
+        url: '/models/chick.glb'
+      },
+      cubohzi: {
+        name: 'Cubozi',
+        url: '/models/cubohzi.glb'
+      },
+      toy_car: {
+        name: 'Toy Car',
+        url: '/models/toy_car.glb'
+      }
+    };
   }
 
   on_iframe_ready()
@@ -68,6 +94,11 @@ export class HomeView
   {
   }
 
+  trigger_file_input()
+  {
+    this.input.click();
+  }
+
   on_file_change(event)
   {
     const file = event.target.files[0];
@@ -98,5 +129,60 @@ export class HomeView
       };
       reader.readAsArrayBuffer(file);
     }
+  }
+
+  on_drop_dragenter(event)
+  {
+    event.preventDefault();
+    this._dragEnterCount += 1;
+
+    // Only show drop area on first enter
+    if (this._dragEnterCount > 1)
+    {
+      return;
+    }
+
+    this.drop_area.classList.add('visible');
+  }
+
+  on_drop_dragover(event)
+  {
+    event.preventDefault();
+  }
+
+  on_drop_dragleave(event)
+  {
+    event.preventDefault();
+    this._dragEnterCount -= 1;
+
+    // Only hide when we've left all elements
+    if (this._dragEnterCount === 0)
+    {
+      this.on_drop_reset();
+    }
+  }
+
+  on_drop_drop(event)
+  {
+    event.preventDefault();
+    this.on_drop_reset();
+
+    const files = event.dataTransfer?.files;
+    if (files && files.length > 0)
+    {
+      console.log('drop', files);
+      // TODO: Handle the dropped files
+    }
+  }
+
+  on_drop_reset()
+  {
+    this._dragEnterCount = 0;
+    this.drop_area.classList.remove('visible');
+  }
+
+  on_example_click(index)
+  {
+    console.log('example', index);
   }
 }
