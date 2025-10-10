@@ -187,6 +187,7 @@ export class HomeView
 
   async on_example_click(index)
   {
+    this.modal_content.classList.add('hidden');
     this.modal_loading.classList.remove('hidden');
 
     const response = await fetch(this.examples[index].url);
@@ -213,6 +214,7 @@ export class HomeView
   on_change_model_click()
   {
     this.modal.classList.remove('hidden');
+    this.modal_content.classList.remove('hidden');
     this.iframe_container.classList.add('disabled');
     this.blur.classList.remove('hidden');
     this.input.value = '';
