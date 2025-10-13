@@ -390,12 +390,14 @@ export class HomeView
 
   on_change_model_click()
   {
-    this.modal.classList.remove('hidden');
-    this.modal_content.classList.remove('hidden');
-    this.iframe_container.classList.add('disabled');
-    this.blur.classList.remove('hidden');
-    this.input.value = '';
-    this.modal_loading.classList.add('hidden');
-    this.change_model_button.classList.add('hidden');
+    // this.modal.classList.remove('hidden');
+    // this.modal_content.classList.remove('hidden');
+    // this.iframe_container.classList.add('disabled');
+    // this.blur.classList.remove('hidden');
+    // this.input.value = '';
+    // this.modal_loading.classList.add('hidden');
+    // this.change_model_button.classList.add('hidden');
+
+    window.location.reload();
   }
 }
