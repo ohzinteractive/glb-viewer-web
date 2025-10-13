@@ -7,7 +7,7 @@
     .home__iframe.disabled
         iframe(src="#" frameborder="0" allowfullscreen)
     .home__modal.hidden
-        input.home__modal-input.hidden(type='file' id='fileInput'  onchange='app.home_view.on_file_change(event)')
+        input.home__modal-input.hidden(type='file' multiple id='fileInput' onchange='app.home_view.on_file_change(event)')
         .home__modal-content
             .home__content-top
                 .home__modal-header
@@ -18,7 +18,9 @@
                     p.home__subtitle View and inspect your GLTF/GLB files.
                 .home__top-trigger
                     .button.home__modal-input-trigger(onclick='app.home_view.trigger_file_input()')
-                        .home__modal-input-trigger-text Drop or Choose
+                        .home__modal-input-trigger-text
+                            span Select -> File
+                            span Drop -> File/Folder
             .home__content-bottom
                     .home__modal-bottom-title
                         | Or try one of these:

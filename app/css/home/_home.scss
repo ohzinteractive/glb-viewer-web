@@ -238,10 +238,15 @@
         $trigger-duration: 0.5s;
 
         .home__modal-input-trigger-text {
-            transform: rotate(0deg);
-            transition: transform $trigger-duration ease;
+            display: flex;
+
+            flex-direction: column;
+
+            row-gap: 10 * $ptr;
 
             text-align: center;
+            transform: rotate(0deg);
+            transition: transform $trigger-duration ease;
         }
 
         .home__modal-input-trigger {
@@ -251,8 +256,10 @@
 
             justify-content: center;
 
-            width: 200 * $ptr;
-            height: 200 * $ptr;
+            padding: 10 * $ptr;
+
+            width: 230 * $ptr;
+            height: 230 * $ptr;
 
             font-size: 16 * $ptr;
 
