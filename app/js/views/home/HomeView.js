@@ -78,7 +78,7 @@ export class HomeView
 
     this.iframe.contentWindow.postMessage({
       type: 'setWebViewPath',
-      webview_path: '/'
+      webview_path: '/webview/'
     }, '*');
   }
 
