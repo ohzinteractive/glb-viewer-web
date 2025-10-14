@@ -131,7 +131,8 @@ export class HomeView
         this.iframe.contentWindow.postMessage({
           type: 'loadModelFromBase64',
           data: base64String,
-          extension: file.name.split('.').pop().toLowerCase()
+          extension: file.name.split('.').pop().toLowerCase(),
+          fileSize: arrayBuffer.byteLength
         }, '*');
 
         this.modal.classList.add('hidden');
@@ -223,7 +224,8 @@ export class HomeView
     this.iframe.contentWindow.postMessage({
       type: 'loadModelFromBase64',
       data: base64String,
-      extension: 'gltf'
+      extension: 'gltf',
+      fileSize: embeddedGltfJson.length
     }, '*');
   }
 
@@ -379,7 +381,8 @@ export class HomeView
     this.iframe.contentWindow.postMessage({
       type: 'loadModelFromBase64',
       data: base64String,
-      extension: 'glb'
+      extension: 'glb',
+      fileSize: arrayBuffer.byteLength
     }, '*');
 
     this.modal.classList.add('hidden');
