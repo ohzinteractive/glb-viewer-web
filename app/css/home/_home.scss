@@ -109,7 +109,7 @@
         left: 0;
         z-index: 10;
 
-        padding: 20px;
+        padding: 20 * $ptr;
 
         width: 100%;
         height: 100%;
@@ -118,9 +118,9 @@
 
         background-color: rgb(0 0 0 / 20%);
 
-        border-radius: 8px;
+        border-radius: 8 * $ptr;
 
-        box-shadow: 0 4px 8px rgb(0 0 0 / 10%);
+        box-shadow: 0 4 * $ptr 8 * $ptr rgb(0 0 0 / 10%);
     }
 
     .home__modal-loading {
@@ -311,7 +311,7 @@
 
         border-radius: $border-radius;
 
-        box-shadow: 0 4px 8px rgb(0 0 0 / 10%);
+        box-shadow: 0 4 * $ptr 8 * $ptr rgb(0 0 0 / 10%);
     }
 
         .home__modal-examples {
